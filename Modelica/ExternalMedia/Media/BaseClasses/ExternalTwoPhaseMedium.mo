@@ -36,7 +36,7 @@ package ExternalTwoPhaseMedium "Generic external two phase medium package"
     // Fields in ASCII lexicographical order to work in Dymola
     Temperature T "temperature";
     VelocityOfSound a "velocity of sound";
-    Modelica.SIunits.CubicExpansionCoefficient beta
+    Modelica.Units.SI.CubicExpansionCoefficient beta
       "isobaric expansion coefficient";
     SpecificHeatCapacity cp "specific heat capacity cp";
     SpecificHeatCapacity cv "specific heat capacity cv";
@@ -47,7 +47,7 @@ package ExternalTwoPhaseMedium "Generic external two phase medium package"
       "derivative of density wrt pressure at constant enthalpy";
     DynamicViscosity eta "dynamic viscosity";
     SpecificEnthalpy h "specific enthalpy";
-    Modelica.SIunits.Compressibility kappa "compressibility";
+    Modelica.Units.SI.Compressibility kappa "compressibility";
     ThermalConductivity lambda "thermal conductivity";
     AbsolutePressure p "pressure";
     FixedPhase phase(min=0, max=2)
@@ -105,7 +105,7 @@ package ExternalTwoPhaseMedium "Generic external two phase medium package"
     SaturationProperties sat "saturation property record";
   equation
     MM = externalFluidConstants.molarMass;
-    R = Modelica.Constants.R/MM;
+    R_s = Modelica.Constants.R/MM;
     if (onePhase or (basePropertiesInputChoice == InputChoice.pT)) then
       phaseInput = 1 "Force one-phase property computation";
     else

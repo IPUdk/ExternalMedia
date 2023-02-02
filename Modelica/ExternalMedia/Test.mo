@@ -1021,9 +1021,9 @@ package Test "Test models for the different solvers"
 
         package DowQ_CP "DowthermQ properties from CoolProp"
           extends ExternalMedia.Media.IncompressibleCoolPropMedium(
-          mediumName="DowQ",
-          substanceNames={"DowQ|calc_transport=1|debug=1000"},
-          ThermoStates=Modelica.Media.Interfaces.PartialMedium.Choices.IndependentVariables.pT);
+            mediumName="DowQ",
+            substanceNames={"DowQ|calc_transport=1|debug=1000"},
+            ThermoStates=Modelica.Media.Interfaces.Choices.IndependentVariables.pT);
         end DowQ_CP;
 
         replaceable package Fluid =  DowQ_CP constrainedby
@@ -1048,9 +1048,10 @@ package Test "Test models for the different solvers"
 
         package LiBr_CP "Lithium bromide solution properties from CoolProp"
           extends ExternalMedia.Media.IncompressibleCoolPropMedium(
-          mediumName="LiBr",
-          substanceNames={"LiBr|calc_transport=1|debug=1000","dummyToMakeBasePropertiesWork"},
-          ThermoStates=Modelica.Media.Interfaces.PartialMedium.Choices.IndependentVariables.pTX);
+            mediumName="LiBr",
+            substanceNames={"LiBr|calc_transport=1|debug=1000",
+                "dummyToMakeBasePropertiesWork"},
+            ThermoStates=Modelica.Media.Interfaces.Choices.IndependentVariables.pTX);
         end LiBr_CP;
 
         replaceable package Fluid = LiBr_CP constrainedby
@@ -1089,12 +1090,12 @@ package Test "Test models for the different solvers"
             inputChoice=ExternalMedia.Common.InputChoice.hs);
         end wf;
         wf.BaseProperties fluid "Properties of the two-phase fluid";
-        Modelica.SIunits.SpecificEnthalpy h;
-        Modelica.SIunits.Pressure p;
-        Modelica.SIunits.SpecificEntropy s;
-        Modelica.SIunits.DerDensityByEnthalpy drdh
+        Modelica.Units.SI.SpecificEnthalpy h;
+        Modelica.Units.SI.Pressure p;
+        Modelica.Units.SI.SpecificEntropy s;
+        Modelica.Units.SI.DerDensityByEnthalpy drdh
           "Derivative of average density by enthalpy";
-        Modelica.SIunits.DerDensityByPressure drdp
+        Modelica.Units.SI.DerDensityByPressure drdp
           "Derivative of average density by pressure";
       equation
         //p = 1E5;
@@ -1117,12 +1118,12 @@ package Test "Test models for the different solvers"
             inputChoice=ExternalMedia.Common.InputChoice.hs);
         end wf;
         wf.ThermodynamicState fluid "Properties of the two-phase fluid";
-        Modelica.SIunits.SpecificEnthalpy h;
-        Modelica.SIunits.Pressure p;
-        Modelica.SIunits.SpecificEntropy s;
-        Modelica.SIunits.DerDensityByEnthalpy drdh
+        Modelica.Units.SI.SpecificEnthalpy h;
+        Modelica.Units.SI.Pressure p;
+        Modelica.Units.SI.SpecificEntropy s;
+        Modelica.Units.SI.DerDensityByEnthalpy drdh
           "Derivative of average density by enthalpy";
-        Modelica.SIunits.DerDensityByPressure drdp
+        Modelica.Units.SI.DerDensityByPressure drdp
           "Derivative of average density by pressure";
       equation
         //p = 1E5;
@@ -1206,16 +1207,16 @@ package Test "Test models for the different solvers"
         fluid_spl.ThermodynamicState state_spl "Properties of the two-phase fluid";
         fluid_tbl.ThermodynamicState state_tbl "Properties of the two-phase fluid";
 
-        Modelica.SIunits.AbsolutePressure p;
-        Modelica.SIunits.SpecificEnthalpy h;
+        Modelica.Units.SI.AbsolutePressure p;
+        Modelica.Units.SI.SpecificEnthalpy h;
 
         fluid_std.SaturationProperties sat_std;
 
-        Modelica.SIunits.SpecificEnthalpy h_start;
-        Modelica.SIunits.SpecificEnthalpy h_end;
-        Modelica.SIunits.SpecificEnthalpy h_delta;
+        Modelica.Units.SI.SpecificEnthalpy h_start;
+        Modelica.Units.SI.SpecificEnthalpy h_end;
+        Modelica.Units.SI.SpecificEnthalpy h_delta;
 
-        Modelica.SIunits.Time t = 1;
+        Modelica.Units.SI.Time t=1;
 
         Real x_std, x_spl, x_tbl;
 
@@ -1539,11 +1540,11 @@ package Test "Test models for the different solvers"
             ModelicaMedium) "Modelica medium model";
       CompleteBaseProperties testMedium(redeclare package Medium = TestMedium)
         "TestMedium medium model";
-      parameter Modelica.SIunits.Pressure pmin;
-      parameter Modelica.SIunits.Pressure pmax;
-      parameter Modelica.SIunits.SpecificEnthalpy hmin;
-      parameter Modelica.SIunits.SpecificEnthalpy hmax;
-      constant Modelica.SIunits.Time T = 1;
+      parameter Modelica.Units.SI.Pressure pmin;
+      parameter Modelica.Units.SI.Pressure pmax;
+      parameter Modelica.Units.SI.SpecificEnthalpy hmin;
+      parameter Modelica.Units.SI.SpecificEnthalpy hmax;
+      constant Modelica.Units.SI.Time T=1;
     equation
       modelicaMedium.baseProperties.p = pmin + (pmax - pmin)*time/T;
       modelicaMedium.baseProperties.h = hmin + (hmax - hmin)*time/T;
